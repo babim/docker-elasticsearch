@@ -6,9 +6,7 @@ WORKDIR /usr/share/elasticsearch
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 
 # Install Elasticsearch
-RUN wget -q --no-check-certificate -O elasticsearch.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
-"; \
- && \
+RUN wget -q --no-check-certificate -O elasticsearch.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz && \
 	tar -xf elasticsearch.tar.gz --strip-components=1; \	
 	rm elasticsearch.tar.gz; \
 	mkdir -p ./plugins; \
