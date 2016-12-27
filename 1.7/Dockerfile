@@ -1,18 +1,14 @@
-# VERSION 1.7.3
-# AUTHOR:         Nicolas Lamirault <nicolas.lamirault@gmail.com>
-# DESCRIPTION:    portefaix/elasticsearch
-
-FROM portefaix/base:3.3
-MAINTAINER Nicolas Lamirault <nicolas.lamirault@gmail.com>
+FROM babim/alpinebase
 
 ENV JAVA_VERSION=8 \
-    JAVA_UPDATE=77 \
-    JAVA_BUILD=07 \
+    JAVA_UPDATE=111 \
+    JAVA_BUILD=14 \
     JAVA_PACKAGE=jdk \
     JAVA_HOME=/jre
 
-ENV ES_VERSION 1.7.5
-ENV GLIBC_PKG_VERSION=2.23-r1
+ENV ES_VERSION 1.7.6
+ENV GLIBC_PKG_VERSION=2.23-r3 \
+    GOSU_VERSION=1.9
 
 RUN apk add --update wget curl ca-certificates
 
@@ -22,11 +18,11 @@ WORKDIR /tmp
 RUN mkdir -p /etc/apk/keys/ && \
     apk --no-cache add ca-certificates && \
     wget -q --no-check-certificate -O /etc/apk/keys/andyshinn.rsa.pub https://raw.githubusercontent.com/andyshinn/alpine-pkg-glibc/master/andyshinn.rsa.pub && \
-    wget -q --no-check-certificate https://github.com/andyshinn/alpine-pkg-glibc/releases/download/2.23-r1/glibc-2.23-r1.apk && \
-    apk add glibc-2.23-r1.apk
+    wget -q --no-check-certificate https://github.com/andyshinn/alpine-pkg-glibc/releases/download/$GLIBC_PKG_VERSION/glibc-$GLIBC_PKG_VERSION.apk && \
+    apk add glibc-$GLIBC_PKG_VERSION.apk
 
 # Install Oracle Java
-RUN curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u77-b03/server-jre-8u77-linux-x64.tar.gz" -o /tmp/java.tar.gz && \
+RUN curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/$JAVA_VERSIONu$JAVA_UPDATE-b$JAVA_BUILD/server-jre-$JAVA_VERSIONu$JAVA_UPDATE-linux-x64.tar.gz" -o /tmp/java.tar.gz && \
     tar -zxf /tmp/java.tar.gz && \
     mv /tmp/jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}/jre /jre && \
     rm /jre/bin/jjs && \
@@ -45,7 +41,7 @@ RUN curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" "http://down
     rm -rf /jre/lib/oblique-fonts && \
     echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
 
-RUN curl -o /usr/local/bin/gosu -sSL "https://github.com/tianon/gosu/releases/download/1.2/gosu-amd64" && \
+RUN curl -o /usr/local/bin/gosu -sSL "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64" && \
 	chmod +x /usr/local/bin/gosu
 
 # Install Elasticsearch
