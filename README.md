@@ -1,5 +1,5 @@
-# Portefaix Elasticsearch
-Thanks portefaix
+# Elasticsearch
+Thanks portefaix and official elasticsearch repo
 
 Alpine Linux is a Linux distribution built around musl libc and BusyBox.
 This image is based on the official Alpine Linux.
@@ -16,3 +16,5 @@ Volumes exported is : `/usr/share/elasticsearch/data`
 ## Usage
 
     $ docker run -it -p 9200:9200 -p 9300:9300 babim/elasticsearch:[version]
+
+Don't use tag :base ok ? :-)
