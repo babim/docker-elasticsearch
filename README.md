@@ -1,10 +1,10 @@
 # Portefaix Elasticsearch
 Thanks portefaix
 
-[Alpine Linux][] is a Linux distribution built around musl libc and BusyBox.
+Alpine Linux is a Linux distribution built around musl libc and BusyBox.
 This image is based on the official Alpine Linux.
 
-The following [Elasticsearch][] plugins are installed :
+The following Elasticsearch plugins are installed :
 
 Some [Elasticsearch][] plugins are available:
 * [ElasticSearchHead][]: `http://xxx:9200/_plugin/head/`
