@@ -1,5 +1,6 @@
 FROM babim/alpinebase
 
+# environment
 ENV JAVA_VERSION=8 \
     JAVA_UPDATE=111 \
     JAVA_BUILD=14 \
@@ -10,6 +11,7 @@ ENV ES_VERSION 1.7.6
 ENV GLIBC_PKG_VERSION=2.23-r3 \
     GOSU_VERSION=1.9
 
+# install download tool
 RUN apk add --update wget curl ca-certificates
 
 WORKDIR /tmp
@@ -50,6 +52,7 @@ RUN curl -Ls https://download.elastic.co/elasticsearch/elasticsearch/elasticsear
 COPY ./elasticsearch.yml /usr/share/elasticsearch/elasticsearch.yml
 COPY docker-entrypoint.sh /
 
+# clean temp and remove unneed apps
 RUN apk del curl wget ca-certificates && \
     rm -fr /tmp/* /var/cache/apk/*
 
