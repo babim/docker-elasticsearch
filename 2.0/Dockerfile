@@ -1,45 +1,34 @@
 FROM babim/elasticsearch:base
 
-ENV ES_VERSION 2.0.2
+ENV ELASTICSEARCH_VERSION 2.0.2
 
-WORKDIR /tmp
-
-# Install Elasticsearch
-RUN curl -Ls http://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/$ES_VERSION/elasticsearch-$ES_VERSION.tar.gz | tar -xz -C /usr/share && \
-    mv /usr/share/elasticsearch-$ES_VERSION /usr/share/elasticsearch
-COPY ./elasticsearch.yml /usr/share/elasticsearch/elasticsearch.yml
-COPY logging.yml /usr/share/elasticsearch/config/
-COPY docker-entrypoint.sh /
-
-# clean temp and remove unneed apps
-RUN apk del curl wget ca-certificates && \
-    rm -fr /tmp/* /var/cache/apk/*
-
+WORKDIR /usr/share/elasticsearch
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 
-# Add elasticsearch user+group:
-RUN addgroup -S elasticsearch && \
-    adduser -S -G elasticsearch elasticsearch
+# Install Elasticsearch
+RUN wget -q --no-check-certificate -O elasticsearch.tar.gz https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-$ELASTICSEARCH_VERSION.tar.gz \
+	tar -xf elasticsearch.tar.gz --strip-components=1; \	
+	rm elasticsearch.tar.gz; \
+	mkdir -p ./plugins; \
+	for path in \
+		./data \
+		./logs \
+		./config \
+		./config/scripts \
+	; do \
+		mkdir -p "$path"; \
+		chown -R elasticsearch:elasticsearch "$path"; \
+	done; \
+	\
+	if [ "${ELASTICSEARCH_VERSION%%.*}" -gt 1 ]; then \
+		elasticsearch --version; \
+	else \
+# elasticsearch 1.x doesn't support --version
+# but in 5.x, "-v" is verbose (and "-V" is --version)
+		elasticsearch -v; \
+	fi
 
-RUN set -ex \
-    && for path in \
-       /usr/share/elasticsearch/data \
-       /usr/share/elasticsearch/logs \
-       /usr/share/elasticsearch/config \
-       /usr/share/elasticsearch/config/scripts \
-       ; do \
-         mkdir -p "$path"; \
-         chown -R elasticsearch:elasticsearch "$path"; \
-       done
+COPY config ./config
 
-RUN /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head && \
-    /usr/share/elasticsearch/bin/plugin install lmenezes/elasticsearch-kopf/2.0
-
-VOLUME ["/usr/share/elasticsearch/data"]
-
-EXPOSE 9200
-EXPOSE 9300
-
-ENTRYPOINT ["/docker-entrypoint.sh"]
-
-CMD ["elasticsearch", "-Des.network.host=0.0.0.0"]
+# clean temp and remove unneed apps
+RUN apk del .fetch-deps ca-certificates gnupg openssl tar curl wget

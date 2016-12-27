@@ -1,6 +1,6 @@
 FROM babim/elasticsearch:base
 
-ENV ELASTICSEARCH_VERSION 2.2.2
+ENV ELASTICSEARCH_VERSION 5.1.1
 
 WORKDIR /usr/share/elasticsearch
 ENV PATH /usr/share/elasticsearch/bin:$PATH
