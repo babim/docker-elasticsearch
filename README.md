@@ -1,5 +1,6 @@
 [![](https://images.microbadger.com/badges/image/babim/elasticsearch:base.svg)](https://microbadger.com/images/babim/elasticsearch:base "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/babim/elasticsearch:base.svg)](https://microbadger.com/images/babim/elasticsearch:base "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/image/babim/elasticsearch:lastest.svg)](https://microbadger.com/images/babim/elasticsearch:lastest "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/babim/elasticsearch:lastest.svg)](https://microbadger.com/images/babim/elasticsearch:lastest "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/babim/elasticsearch:xpack.svg)](https://microbadger.com/images/babim/elasticsearch:xpack "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/babim/elasticsearch:xpack.svg)](https://microbadger.com/images/babim/elasticsearch:xpack "Get your own version badge on microbadger.com")
 
 [![](https://images.microbadger.com/badges/image/babim/elasticsearch:1.5.svg)](https://microbadger.com/images/babim/elasticsearch:1.5 "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/babim/elasticsearch:1.5.svg)](https://microbadger.com/images/babim/elasticsearch:1.5 "Get your own version badge on microbadger.com")
 [![](https://images.microbadger.com/badges/image/babim/elasticsearch:1.6.svg)](https://microbadger.com/images/babim/elasticsearch:1.6 "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/babim/elasticsearch:1.6.svg)](https://microbadger.com/images/babim/elasticsearch:1.6 "Get your own version badge on microbadger.com")
@@ -14,9 +15,11 @@
 [![](https://images.microbadger.com/badges/image/babim/elasticsearch:5.0.svg)](https://microbadger.com/images/babim/elasticsearch:5.0 "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/babim/elasticsearch:5.0.svg)](https://microbadger.com/images/babim/elasticsearch:5.0 "Get your own version badge on microbadger.com")
 
 [![](https://images.microbadger.com/badges/image/babim/elasticsearch:5.1.svg)](https://microbadger.com/images/babim/elasticsearch:5.1 "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/babim/elasticsearch:5.1.svg)](https://microbadger.com/images/babim/elasticsearch:5.1 "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/babim/elasticsearch:geoip.svg)](https://microbadger.com/images/babim/elasticsearch:geoip "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/babim/elasticsearch:geoip.svg)](https://microbadger.com/images/babim/elasticsearch:geoip "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/babim/elasticsearch:kopf.svg)](https://microbadger.com/images/babim/elasticsearch:kopf "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/babim/elasticsearch:kopf.svg)](https://microbadger.com/images/babim/elasticsearch:kopf "Get your own version badge on microbadger.com")
 
 # Elasticsearch
-Thanks portefaix and official elasticsearch repo
+Thanks Portefaix and BlackTop and official elasticsearch repo
 
 Alpine Linux is a Linux distribution built around musl libc and BusyBox.
 This image is based on the official Alpine Linux.
