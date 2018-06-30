@@ -1,24 +1,26 @@
 FROM babim/alpinebase
 
+## alpine linux
+RUN apk add --no-cache wget bash && cd / && wget --no-check-certificate https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20SCRIPT%20AUTO/option.sh && \
+    chmod 755 /option.sh
+
 # Install Oracle Java
-RUN apk add --no-cache openjdk8-jre
+RUN apk add --no-cache openjdk8-jre tini su-exec libzmq bash libc6-compat
 
 # ensure elasticsearch user exists
-RUN addgroup -S elasticsearch && adduser -S -G elasticsearch elasticsearch
+RUN adduser -D -h /usr/share/elasticsearch elasticsearch
 
-# grab su-exec for easy step-down from root
-# and bash for "bin/elasticsearch" among others
-RUN apk add --no-cache 'su-exec>=0.2' bash
-
-# install other depend
-RUN apk add --no-cache --virtual .fetch-deps \
-		ca-certificates \
-		openssl \
-		tar wget
+RUN apk-install -t build-deps wget ca-certificates gnupg openssl
 
 COPY docker-entrypoint.sh /
-RUN chmod +x /docker-entrypoint.sh
-VOLUME ["/var/lib/elasticsearch/data"]
-EXPOSE 9200 9300
+COPY docker-healthcheck /usr/local/bin/
+
+ENV PATH /usr/share/elasticsearch/bin:$PATH
+ENV ES_TMPDIR /usr/share/elasticsearch/tmp
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
+VOLUME ["/usr/share/elasticsearch/data"]
+
+EXPOSE 9200 9300
+
 CMD ["elasticsearch"]
