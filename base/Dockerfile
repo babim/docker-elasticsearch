@@ -8,7 +8,7 @@ RUN apk add --no-cache wget bash && cd / && wget --no-check-certificate https://
 RUN apk add --no-cache openjdk8-jre tini su-exec libzmq bash libc6-compat
 
 # ensure elasticsearch user exists
-RUN adduser -D -h /usr/share/elasticsearch elasticsearch
+RUN adduser -DH -s /sbin/nologin elasticsearch
 
 RUN apk add --no-cache ca-certificates gnupg openssl
 

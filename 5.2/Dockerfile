@@ -17,6 +17,7 @@ RUN cd /tmp \
   	/usr/share/elasticsearch/logs \
   	/usr/share/elasticsearch/config \
   	/usr/share/elasticsearch/config/scripts \
+	/usr/share/elasticsearch/tmp \
   	/usr/share/elasticsearch/plugins \
   ; do \
   mkdir -p "$path"; \
