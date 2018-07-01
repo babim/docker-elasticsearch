@@ -46,6 +46,8 @@ RUN cd /tmp \
   && apk del --purge wget ca-certificates gnupg openssl
 
 WORKDIR /usr/share/elasticsearch
+ENV PATH /usr/share/elasticsearch/bin:$PATH
+ENV ES_TMPDIR /usr/share/elasticsearch/tmp
 
 # Install X-Pack plugin
 # RUN elasticsearch-plugin install -b x-pack
