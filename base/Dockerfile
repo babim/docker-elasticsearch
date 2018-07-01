@@ -10,7 +10,7 @@ RUN apk add --no-cache openjdk8-jre tini su-exec libzmq bash libc6-compat
 # ensure elasticsearch user exists
 RUN adduser -D -h /usr/share/elasticsearch elasticsearch
 
-RUN apk-install -t build-deps wget ca-certificates gnupg openssl
+RUN apk add --no-cache -t build-deps wget ca-certificates gnupg openssl
 
 COPY docker-entrypoint.sh /
 COPY docker-healthcheck /usr/local/bin/
