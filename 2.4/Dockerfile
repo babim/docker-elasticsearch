@@ -7,7 +7,7 @@ ENV ES_TARBAL "${DOWNLOAD_URL}/tar/elasticsearch/${ES_VERSION}/elasticsearch-${E
 
 RUN cd /tmp \
   && echo "===> Install Elasticsearch..." \
-  && wget --no-check-certificate -O elasticsearch.tar.gz "$ES_TARBAL"; \
+  && wget --no-check-certificate --progress=bar:force -O elasticsearch.tar.gz "$ES_TARBAL"; \
   tar -xf elasticsearch.tar.gz \
   && ls -lah \
   && mv elasticsearch-$ES_VERSION /usr/share/elasticsearch \
