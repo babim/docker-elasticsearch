@@ -31,4 +31,4 @@ RUN wget --no-check-certificate -O elasticsearch.tar.gz https://download.elastic
 COPY config ./config
 
 # clean temp and remove unneed apps
-RUN apk del --purge ca-certificates openssl tar wget
+RUN apk del --purge ca-certificates openssl wget
