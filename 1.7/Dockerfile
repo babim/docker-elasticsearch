@@ -23,7 +23,7 @@ RUN cd /tmp \
   chown -R elasticsearch:elasticsearch "$path"; \
   done \
   && rm -rf /tmp/* \
-  && apk del .build-deps  wget
+  && apk del wget ca-certificates gnupg openssl
 
 COPY config/elastic /usr/share/elasticsearch/config
 COPY config/logrotate /etc/logrotate.d/elasticsearch
