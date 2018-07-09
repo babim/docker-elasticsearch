@@ -27,5 +27,6 @@ RUN cd /tmp \
 
 COPY config/elastic /usr/share/elasticsearch/config
 COPY config/logrotate /etc/logrotate.d/elasticsearch
+COPY docker-entrypoint.sh /
 
 WORKDIR /usr/share/elasticsearch

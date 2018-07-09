@@ -29,6 +29,7 @@ RUN wget --no-check-certificate --progress=bar:force -O elasticsearch.tar.gz htt
 	fi
 
 COPY config ./config
+COPY docker-entrypoint.sh /
 
 # clean temp and remove unneed apps
 RUN apk del --purge ca-certificates openssl wget
