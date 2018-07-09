@@ -16,7 +16,7 @@ if [ "$1" = 'elasticsearch' -a "$(id -u)" = '0' ]; then
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
 	chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
 
-	set -- su-exec elasticsearch tini -- "$@"
+	set -- su-exec elasticsearch /usr/bin/tini -- "$@"
 	#exec su-exec elasticsearch "$BASH_SOURCE" "$@"
 fi
 
@@ -27,7 +27,7 @@ if [ "$1" = 'kopf' -a "$(id -u)" = '0' ]; then
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
 	chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
 
-	set -- su-exec elasticsearch tini -- elasticsearch
+	set -- su-exec elasticsearch /usr/bin/tini -- elasticsearch
 	#exec su-exec elasticsearch "$BASH_SOURCE" "$@"
 fi
 
@@ -40,7 +40,7 @@ if [ "$1" = 'master' -a "$(id -u)" = '0' ]; then
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
 	chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
 
-	set -- su-exec elasticsearch tini -- elasticsearch
+	set -- su-exec elasticsearch /usr/bin/tini -- elasticsearch
 	#exec su-exec elasticsearch "$BASH_SOURCE" "$@"
 fi
 
@@ -57,7 +57,7 @@ if [ "$1" = 'client' -a "$(id -u)" = '0' ]; then
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
 	chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
 
-	set -- su-exec elasticsearch tini -- elasticsearch
+	set -- su-exec elasticsearch /usr/bin/tini -- elasticsearch
 	#exec su-exec elasticsearch "$BASH_SOURCE" "$@"
 fi
 
@@ -71,7 +71,7 @@ if [ "$1" = 'data' -a "$(id -u)" = '0' ]; then
 	# Change the ownership of /usr/share/elasticsearch/data to elasticsearch
 	chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data
 
-	set -- su-exec elasticsearch tini -- elasticsearch
+	set -- su-exec elasticsearch /usr/bin/tini -- elasticsearch
 	#exec su-exec elasticsearch "$BASH_SOURCE" "$@"
 fi
 
