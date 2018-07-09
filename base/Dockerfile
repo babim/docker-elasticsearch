@@ -15,9 +15,6 @@ RUN apk add --no-cache ca-certificates gnupg openssl
 COPY docker-entrypoint.sh /
 COPY docker-healthcheck /usr/local/bin/
 
-ENV PATH /usr/share/elasticsearch/bin:$PATH
-ENV ES_TMPDIR /usr/share/elasticsearch/tmp
-
 ENTRYPOINT ["/docker-entrypoint.sh"]
 VOLUME ["/usr/share/elasticsearch/data"]
 

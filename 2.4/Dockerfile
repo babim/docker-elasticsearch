@@ -28,4 +28,7 @@ RUN cd /tmp \
 COPY config/elastic /usr/share/elasticsearch/config
 COPY config/logrotate /etc/logrotate.d/elasticsearch
 
+ENV PATH /usr/share/elasticsearch/bin:$PATH
+ENV ES_TMPDIR /usr/share/elasticsearch/tmp
+
 WORKDIR /usr/share/elasticsearch

@@ -32,3 +32,6 @@ COPY config ./config
 
 # clean temp and remove unneed apps
 RUN apk del --purge ca-certificates openssl wget
+
+ENV PATH /usr/share/elasticsearch/bin:$PATH
+ENV ES_TMPDIR /usr/share/elasticsearch/tmp
