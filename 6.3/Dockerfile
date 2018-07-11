@@ -10,7 +10,7 @@ RUN adduser -DH -s /sbin/nologin elasticsearch
 
 RUN cd /tmp \
   && echo "===> Install Elasticsearch..." \
-  && https_proxy=http://pd.matmagoc.com:31300 wget --no-check-certificate --progress=bar:force -O elasticsearch.tar.gz "$ES_TARBAL"; \
+  && wget --no-check-certificate --progress=bar:force -O elasticsearch.tar.gz "$ES_TARBAL"; \
   tar -xf elasticsearch.tar.gz \
   && ls -lah \
   && mv elasticsearch-$ES_VERSION /usr/share/elasticsearch \
