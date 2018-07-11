@@ -1,16 +1,31 @@
-FROM babim/elasticsearch:base
+FROM babim/alpinebase
 
+# CODE BASE #
+
+## alpine linux
+RUN apk add --no-cache wget bash && cd / && wget --no-check-certificate https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20SCRIPT%20AUTO/option.sh && \
+    chmod 755 /option.sh
+
+# Install Oracle Java
+RUN apk add --no-cache openjdk8-jre tini su-exec libzmq bash libc6-compat
+
+# ensure elasticsearch user exists
+RUN adduser -DH -s /sbin/nologin elasticsearch
+
+RUN apk add --no-cache ca-certificates gnupg openssl
+
+COPY docker-entrypoint.sh /
+COPY docker-healthcheck /usr/local/bin/
+
+# CODE 6.3 #
 ENV ES_VERSION 6.3.0
 
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/elasticsearch"
 ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-${ES_VERSION}.tar.gz"
 
-# ensure elasticsearch user exists
-RUN adduser -DH -s /sbin/nologin elasticsearch
-
 RUN cd /tmp \
   && echo "===> Install Elasticsearch..." \
-  && https_proxy=http://pd.matmagoc.com:31300 wget --no-check-certificate --progress=bar:force -O elasticsearch.tar.gz "$ES_TARBAL"; \
+  && wget --no-check-certificate --progress=bar:force -O elasticsearch.tar.gz "$ES_TARBAL"; \
   tar -xf elasticsearch.tar.gz \
   && ls -lah \
   && mv elasticsearch-$ES_VERSION /usr/share/elasticsearch \

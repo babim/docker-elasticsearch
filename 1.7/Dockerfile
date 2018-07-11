@@ -1,15 +1,5 @@
-FROM babim/alpinebase
+FROM babim/elasticsearch:base
 
-## alpine linux
-RUN apk add --no-cache wget bash && cd / && wget --no-check-certificate https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20SCRIPT%20AUTO/option.sh && \
-    chmod 755 /option.sh
-
-# Install Oracle Java
-RUN apk add --no-cache openjdk8-jre tini su-exec libzmq bash libc6-compat
-
-RUN apk add --no-cache ca-certificates gnupg openssl
-
-COPY docker-entrypoint.sh /
 ENV ES_VERSION 1.7.6
 
 ENV DOWNLOAD_URL "https://download.elastic.co/elasticsearch/elasticsearch"
