@@ -3,7 +3,9 @@ FROM babim/elasticsearch:base
 ENV ELASTICSEARCH_VERSION 2.2.2
 
 WORKDIR /usr/share/elasticsearch
-ENV PATH /usr/share/elasticsearch/bin:$PATH
+
+# ensure elasticsearch user exists
+RUN adduser -DH -s /sbin/nologin elasticsearch
 
 # Install Elasticsearch
 RUN wget --no-check-certificate --progress=bar:force -O elasticsearch.tar.gz https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-$ELASTICSEARCH_VERSION.tar.gz && \
@@ -35,3 +37,10 @@ RUN apk del --purge ca-certificates openssl wget
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV ES_TMPDIR /usr/share/elasticsearch/tmp
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+VOLUME ["/usr/share/elasticsearch/data"]
+
+EXPOSE 9200 9300
+
+CMD ["elasticsearch"]

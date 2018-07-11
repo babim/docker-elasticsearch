@@ -7,9 +7,6 @@ RUN apk add --no-cache wget bash && cd / && wget --no-check-certificate https://
 # Install Oracle Java
 RUN apk add --no-cache openjdk8-jre tini su-exec libzmq bash libc6-compat
 
-# ensure elasticsearch user exists
-RUN adduser -DH -s /sbin/nologin elasticsearch
-
 RUN apk add --no-cache ca-certificates gnupg openssl
 
 COPY docker-entrypoint.sh /

@@ -5,6 +5,9 @@ ENV ES_VERSION 2.3.5
 ENV DOWNLOAD_URL "https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/$ES_VERSION"
 ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-${ES_VERSION}.tar.gz"
 
+# ensure elasticsearch user exists
+RUN adduser -DH -s /sbin/nologin elasticsearch
+
 RUN cd /tmp \
   && echo "===> Install Elasticsearch..." \
   && wget --no-check-certificate --progress=bar:force -O elasticsearch.tar.gz "$ES_TARBAL"; \
@@ -32,3 +35,10 @@ ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV ES_TMPDIR /usr/share/elasticsearch/tmp
 
 WORKDIR /usr/share/elasticsearch
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+VOLUME ["/usr/share/elasticsearch/data"]
+
+EXPOSE 9200 9300
+
+CMD ["elasticsearch"]

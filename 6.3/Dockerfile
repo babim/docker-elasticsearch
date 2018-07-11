@@ -5,9 +5,12 @@ ENV ES_VERSION 6.3.0
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/elasticsearch"
 ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-${ES_VERSION}.tar.gz"
 
+# ensure elasticsearch user exists
+RUN adduser -DH -s /sbin/nologin elasticsearch
+
 RUN cd /tmp \
   && echo "===> Install Elasticsearch..." \
-  && wget --no-check-certificate --progress=bar:force -O elasticsearch.tar.gz "$ES_TARBAL"; \
+  && https_proxy=http://pd.matmagoc.com:31300 wget --no-check-certificate --progress=bar:force -O elasticsearch.tar.gz "$ES_TARBAL"; \
   tar -xf elasticsearch.tar.gz \
   && ls -lah \
   && mv elasticsearch-$ES_VERSION /usr/share/elasticsearch \
@@ -34,3 +37,10 @@ ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV ES_TMPDIR /usr/share/elasticsearch/tmp
 
 WORKDIR /usr/share/elasticsearch
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+VOLUME ["/usr/share/elasticsearch/data"]
+
+EXPOSE 9200 9300
+
+CMD ["elasticsearch"]
