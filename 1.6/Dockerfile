@@ -30,9 +30,6 @@ RUN cd /tmp \
 
 COPY config ./config
 
-# clean temp and remove unneed apps
-RUN apk del --purge ca-certificates openssl wget
-
 ENTRYPOINT ["/docker-entrypoint.sh"]
 VOLUME ["/usr/share/elasticsearch/data"]
 
