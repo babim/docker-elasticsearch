@@ -18,7 +18,7 @@ COPY docker-entrypoint.sh /
 COPY docker-healthcheck /usr/local/bin/
 
 # CODE 6.3 #
-ENV ES_VERSION 6.3.0
+ENV ES_VERSION 6.3.1
 
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/elasticsearch"
 ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-${ES_VERSION}.tar.gz"
