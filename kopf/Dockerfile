@@ -16,7 +16,7 @@ ENV ES_TMPDIR /usr/share/elasticsearch/tmp
 WORKDIR /usr/share/elasticsearch
 
 # Install kopf plugin
-RUN plugin install lmenezes/elasticsearch-kopf/v2.1.2
+RUN elasticsearch-plugin install lmenezes/elasticsearch-kopf/v2.1.2
 
 ENTRYPOINT ["/start.sh"]
 VOLUME ["/usr/share/elasticsearch/data"]
