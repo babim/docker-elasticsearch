@@ -18,7 +18,7 @@ WORKDIR /usr/share/elasticsearch
 # Install kopf plugin
 RUN plugin install lmenezes/elasticsearch-kopf/v2.1.2
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/start.sh"]
 VOLUME ["/usr/share/elasticsearch/data"]
 
 EXPOSE 9200 9300

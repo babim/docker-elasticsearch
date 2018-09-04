@@ -21,7 +21,7 @@ ENV ES_TMPDIR /usr/share/elasticsearch/tmp
 RUN elasticsearch-plugin install -b ingest-geoip
 RUN elasticsearch-plugin install -b ingest-user-agent
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/start.sh"]
 VOLUME ["/usr/share/elasticsearch/data"]
 
 EXPOSE 9200 9300
