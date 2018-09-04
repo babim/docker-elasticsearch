@@ -1,4 +1,8 @@
-FROM babim/elasticsearch:base
+FROM babim/alpinebase
+
+## alpine linux
+RUN apk add --no-cache wget bash curl && cd / && wget --no-check-certificate https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20SCRIPT%20AUTO/option.sh && \
+    chmod 755 /option.sh
 
 ENV ES_VERSION 2.4.4
 ENV ES 2
@@ -16,7 +20,7 @@ ENV ES_TMPDIR /usr/share/elasticsearch/tmp
 WORKDIR /usr/share/elasticsearch
 
 # Install kopf plugin
-RUN elasticsearch-plugin install lmenezes/elasticsearch-kopf/v2.1.2
+RUN plugin install lmenezes/elasticsearch-kopf/v2.1.2
 
 ENTRYPOINT ["/start.sh"]
 VOLUME ["/usr/share/elasticsearch/data"]
