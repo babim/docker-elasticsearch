@@ -1,4 +1,4 @@
-FROM babim/alpinebase
+FROM babim/elasticsearch:base
 
 ENV ES_VERSION 2.4.4
 ENV ES 2
