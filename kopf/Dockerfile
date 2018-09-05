@@ -14,10 +14,10 @@ RUN curl -s https://raw.githubusercontent.com/babim/docker-tag-options/master/z%
 # remove packages
 RUN curl -s https://raw.githubusercontent.com/babim/docker-tag-options/master/z%20ElasticStack%20install/elasticsearch_clean.sh | bash
 
+WORKDIR /usr/share/elasticsearch
+
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV ES_TMPDIR /usr/share/elasticsearch/tmp
-
-WORKDIR /usr/share/elasticsearch
 
 # Install kopf plugin
 RUN plugin install lmenezes/elasticsearch-kopf/v2.1.2
