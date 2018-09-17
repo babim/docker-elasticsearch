@@ -15,9 +15,9 @@ ENV ES_TMPDIR /usr/share/elasticsearch/tmp
 
 WORKDIR /usr/share/elasticsearch
 
-ENTRYPOINT ["/start.sh"]
+#ENTRYPOINT ["/start.sh"]
 VOLUME ["/usr/share/elasticsearch/data"]
 
 EXPOSE 9200 9300
-
+#CMD ["elasticsearch"]
 CMD ["supervisord", "-nc", "/etc/supervisor/supervisord.conf"]

@@ -22,9 +22,9 @@ ENV ES_TMPDIR /usr/share/elasticsearch/tmp
 # Install kopf plugin
 RUN plugin install lmenezes/elasticsearch-kopf/v2.1.2
 
-ENTRYPOINT ["/start.sh"]
+#ENTRYPOINT ["/start.sh"]
 VOLUME ["/usr/share/elasticsearch/data"]
 
 EXPOSE 9200 9300
-
+#CMD ["elasticsearch"]
 CMD ["supervisord", "-nc", "/etc/supervisor/supervisord.conf"]
