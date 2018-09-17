@@ -30,4 +30,4 @@ VOLUME ["/usr/share/elasticsearch/data"]
 
 EXPOSE 9200 9300
 #CMD ["elasticsearch"]
-CMD ["supervisord", "-nc", "/etc/supervisor/supervisord.conf"]
+CMD ["/sbin/tini","--","/usr/bin/supervisord","-c", "/etc/supervisor/supervisord.conf"]
