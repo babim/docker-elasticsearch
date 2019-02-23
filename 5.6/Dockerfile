@@ -1,6 +1,6 @@
 FROM babim/elasticsearch:base
 
-ENV ES_VERSION 5.6.11
+ENV ES_VERSION 5.6.14
 ENV ES 5
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/elasticsearch"
 ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-${ES_VERSION}.tar.gz"
