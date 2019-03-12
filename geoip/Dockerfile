@@ -24,4 +24,6 @@ RUN elasticsearch-plugin install -b ingest-user-agent
 VOLUME ["/usr/share/elasticsearch/data"]
 EXPOSE 9200 9300
 
-CMD ["/sbin/tini","--","/usr/bin/supervisord","-c", "/etc/supervisor/supervisord.conf"]
+ENTRYPOINT ["/start.sh"]
+CMD ["elasticsearch"]
+#CMD ["/sbin/tini","--","/usr/bin/supervisord","-c", "/etc/supervisor/supervisord.conf"]
