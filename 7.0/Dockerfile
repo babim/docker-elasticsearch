@@ -2,8 +2,9 @@ FROM babim/elasticsearch:base
 
 ENV ES_VERSION 7.0.0
 ENV ES 7
+ENV BIT x86_64
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/elasticsearch"
-ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-${ES_VERSION}.tar.gz"
+ENV ES_TARBAL "${DOWNLOAD_URL}/elasticsearch-oss-${ES_VERSION}-linux-${BIT}.tar.gz"
 ENV SOFT elasticsearch
 
 # install
